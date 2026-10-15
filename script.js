@@ -296,3 +296,83 @@ function countNodes(node) {
     if (node === null) return 0;
     return 1 + countNodes(node.left) + countNodes(node.right);
 }
+
+document.getElementById("saveTreeBtn").addEventListener("click", function () {
+    const sourceSvg = document.getElementById("treeCanvas");
+
+    if (tree.root === null) {
+        document.getElementById("treeStatus").textContent =
+            "Insert at least one value before exporting.";
+        return;
+    }
+
+    const clone = sourceSvg.cloneNode(true);
+    const svgNS = "http://www.w3.org/2000/svg";
+
+    clone.setAttribute("xmlns", svgNS);
+    clone.setAttribute("width", "1200");
+    clone.setAttribute("height", "675");
+    clone.setAttribute("viewBox", "0 0 800 450");
+
+    clone.querySelectorAll("text").forEach(text => {
+        text.setAttribute(
+            "font-family",
+            "Arial, Helvetica, sans-serif"
+        );
+    });
+
+    const background = document.createElementNS(svgNS, "rect");
+    background.setAttribute("width", "800");
+    background.setAttribute("height", "450");
+    background.setAttribute("fill", "#fffdf8");
+    clone.insertBefore(background, clone.firstChild);
+
+    const svgData = new XMLSerializer().serializeToString(clone);
+    const blob = new Blob(
+        [svgData],
+        { type: "image/svg+xml;charset=utf-8" }
+    );
+    const url = URL.createObjectURL(blob);
+    const image = new Image();
+
+    image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = 1200;
+        canvas.height = 675;
+
+        const context = canvas.getContext("2d");
+        context.fillStyle = "#fffdf8";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+        URL.revokeObjectURL(url);
+
+        canvas.toBlob(function (pngBlob) {
+            if (!pngBlob) {
+                document.getElementById("treeStatus").textContent =
+                    "Could not export the image. Please try again.";
+                return;
+            }
+
+            const downloadUrl = URL.createObjectURL(pngBlob);
+            const link = document.createElement("a");
+
+            link.href = downloadUrl;
+            link.download = "red-black-tree.png";
+            link.click();
+
+            URL.revokeObjectURL(downloadUrl);
+
+            document.getElementById("treeStatus").textContent =
+                "Tree image saved as red-black-tree.png.";
+        }, "image/png");
+    };
+
+    image.onerror = function () {
+        URL.revokeObjectURL(url);
+        document.getElementById("treeStatus").textContent =
+            "Could not export the image. Please try again.";
+    };
+
+    image.src = url;
+});

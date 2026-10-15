@@ -297,6 +297,28 @@ button span {
     line-height: 1.6;
 }
 
+.export-button {
+    flex-shrink: 0;
+    padding: 8px 11px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 11px;
+}
+
+.export-button:hover {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+}
+
+@media (max-width: 700px) {
+    .workspace-header {
+        flex-wrap: wrap;
+    }
+}
+
+
 @media (max-width: 600px) {
     .properties {
         padding: 18px;
