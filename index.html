@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red-Black Tree Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app">
+        <header class="page-header">
+            <div>
+                <h1>Red-Black Tree</h1>
+                <p class="subtitle">
+                    See how values are organized in a self-balancing tree.
+                </p>
+            </div>
+        </header>
+        <section class="properties">
+    <div class="properties-heading">
+        <div>
+            <h2>Red-Black Tree properties</h2>
+            <br>
+            <strong>Refer to: </strong>
+            <a
+                class="book-reference"
+                href="https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span>
+                    <span class="book-description">
+                        Introduction to Algorithms — Cormen, Leiserson, Rivest & Stein (CLRS)
+                    </span>
+                </span>
+        </a>
+        </div>
+    </div>
+
+    <ol class="property-list">
+        <li>
+            <span class="rule-number">01</span>
+            <div>
+                <strong>Node colors</strong>
+                <p>Every node is red or black.</p>
+            </div>
+        </li>
+        <li>
+            <span class="rule-number">02</span>
+            <div>
+                <strong>Black root</strong>
+                <p>The root is always black.</p>
+            </div>
+        </li>
+        <li>
+            <span class="rule-number">03</span>
+            <div>
+                <strong>No adjacent red nodes</strong>
+                <p>A red node cannot have a red child.</p>
+            </div>
+        </li>
+        <li>
+            <span class="rule-number">04</span>
+            <div>
+                <strong>Equal black height</strong>
+                <p>Every path from a node to its descendant NIL leaves has the same number of black nodes.</p>
+            </div>
+        </li>
+        <li>
+            <span class="rule-number">05</span>
+            <div>
+                <strong>Binary search ordering</strong>
+                <p>Left values are smaller and right values are larger.</p>
+            </div>
+        </li>
+    </ol>
+</section>
+
+        <section class="toolbar" aria-label="Tree controls">
+            <label for="valueInput">Insert a value</label>
+
+            <form id="insertForm">
+                <input
+                    id="valueInput"
+                    type="number"
+                    placeholder="Enter node value"
+                    required
+                >
+                <button type="submit">Insert value</button>
+            </form>
+        </section>
+
+        <section class="workspace">
+            <div class="workspace-header">
+                <h2>Tree view</h2>
+                <div class="legend">
+                    <span><i class="legend-red"></i> Red</span>
+                    <span><i class="legend-black"></i> Black</span>
+                </div>
+            </div>
+
+            <div class="canvas-wrap">
+                <svg
+                    id="treeCanvas"
+                    viewBox="0 0 800 450"
+                    role="img"
+                    aria-label="Tree structure"
+                ></svg>
+
+                <div class="empty-state" id="emptyState">
+                    <p>Your tree is empty.</p>
+                    <span>Enter a number above to get started.</span>
+                </div>
+            </div>
+            
+
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

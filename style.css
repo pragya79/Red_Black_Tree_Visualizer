@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+
+:root {
+    --page: #faf9f6;
+    --paper: #ffffff;
+    --ink: #242424;
+    --muted: #77766f;
+    --line: #e5e3dc;
+    --red: #c83d43;
+    --focus: #565d48;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+a {
+    color: inherit;
+}
+.app {
+    width: min(100% - 48px, 1040px);
+    margin: 0 auto;
+}
+
+.page-header {
+    padding: 56px 0 30px;
+    border-bottom: 1px solid var(--line);
+}
+
+.kicker {
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.07em;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(30px, 5vw, 42px);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.15;
+}
+
+.subtitle {
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.toolbar label {
+    font-weight: 600;
+}
+
+#insertForm {
+    display: flex;
+    gap: 8px;
+}
+
+input {
+    width: 160px;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid #d7d5cd;
+    border-radius: 4px;
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    outline: none;
+}
+
+input::placeholder {
+    color: #aaa79e;
+}
+
+input:focus {
+    border-color: var(--focus);
+    box-shadow: 0 0 0 2px rgba(86, 93, 72, 0.12);
+}
+
+button {
+    padding: 10px 14px;
+    border: 1px solid var(--ink);
+    border-radius: 4px;
+    background: var(--ink);
+    color: white;
+    font: inherit;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+button:hover {
+    background: #44443f;
+}
+
+button:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+}
+
+button span {
+    margin-left: 8px;
+}
+
+.workspace {
+    margin-top: 28px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+}
+
+.workspace-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 17px 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+.workspace-header h2 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.legend {
+    display: flex;
+    gap: 16px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend i {
+    width: 9px;
+    height: 9px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.legend-red {
+    background: var(--red);
+}
+
+.legend-black {
+    background: #242424;
+}
+
+.canvas-wrap {
+    position: relative;
+    min-height: 300px;
+    background-color: var(--paper);
+}
+
+#treeCanvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+}
+
+.empty-state {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    pointer-events: none;
+    text-align: center;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.empty-state span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.workspace-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 20px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.page-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px 0 36px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.properties {
+    margin-top: 28px;
+    padding: 22px 24px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+}
+
+.properties-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+}
+
+.properties-heading h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.properties-heading p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.property-status {
+    padding: 4px 8px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.property-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.property-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.rule-number {
+    padding-top: 1px;
+    color: var(--red);
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.property-list strong {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.property-list p {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+    .properties {
+        padding: 18px;
+    }
+
+    .property-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .app {
+        width: calc(100% - 32px);
+    }
+
+    .page-header {
+        padding-top: 36px;
+    }
+
+    .toolbar {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    #insertForm {
+        width: 100%;
+    }
+
+    input {
+        flex: 1;
+        width: 0;
+    }
+
+    .workspace-header {
+        padding: 15px;
+    }
+
+    .canvas-wrap {
+        min-height: 260px;
+        overflow-x: auto;
+    }
+
+    #treeCanvas {
+        min-width: 560px;
+        min-height: 315px;
+    }
+
+    .workspace-footer,
+    .page-footer {
+        flex-wrap: wrap;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+    }
+}
